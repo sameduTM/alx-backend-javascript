@@ -1,34 +1,20 @@
-/**
- * Abstract class representing a building.
- */
-class Building {
-  /**
-   * Create a building.
-   * @param {Number} sqft - The square footage of the building.
-   */
-  constructor(sqft) {
-    if (new.target === Building) {
-      throw new Error('Building is an abstract class and cannot be instantiated directly');
+export default class Building {
+  constructor(sft) {
+    this.sft = sft;
+    if (this.constructor !== Building) {
+      if (typeof this.evacuationWarningMessage !== 'function') {
+        throw new Error(
+          'Class extending Building must override evacuationWarningMessage',
+        );
+      }
     }
-    this._sqft = sqft;
   }
 
-  /**
-   * Get the square footage of the building.
-   * @returns {Number} The square footage.
-   */
-  get sqft() {
-    return this._sqft;
+  get sft() {
+    return this._sft;
   }
 
-  /**
-   * Evacuation warning message.
-   * This method must be implemented by any class extending Building.
-   * @throws Will throw an error if the method is not overridden.
-   */
-  evacuationWarningMessage() {
-    throw new Error('Class extending Building must override evacuationWarningMessage');
+  set sft(value) {
+    this._sft = value;
   }
 }
-
-export default Building;
