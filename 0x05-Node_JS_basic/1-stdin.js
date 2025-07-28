@@ -1,6 +1,6 @@
-console.log("Welcome to ALX, what is your name?");
+console.log('Welcome to ALX, what is your name?');
 
-process.stdin.on("readable", () => {
+process.stdin.on('readable', () => {
   const chunk = process.stdin.read();
   const name = chunk.toString().trim();
   if (name !== null) {
@@ -9,6 +9,6 @@ process.stdin.on("readable", () => {
   process.exit(0);
 });
 
-process.on("exit", () => {
+process.on('exit', () => {
   console.log('This important software is now closing');
-})
+});
