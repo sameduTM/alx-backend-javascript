@@ -1,4 +1,4 @@
-const { fs } = require('fs/promises');
+import * as fs from 'node:fs/promises';
 
 async function countStudents(path) {
   try {
@@ -26,8 +26,8 @@ async function countStudents(path) {
         console.log(`Number of students in ${key}: ${fieldCounts[key]}. List: ${studentCounts[key]}`);
       }
     }
-  } catch(err) {
-    console.error('Cannot load the database:');
+  } catch (err) {
+    throw new Error('Cannot load database');
   }
 }
 
