@@ -1,11 +1,11 @@
 const fs = require('fs');
 
-function countStudents(path) {
+function countStudents (path) {
   try {
     const data = fs.readFileSync(path, 'utf8');
 
     // Remove empty lines and split
-    const lines = data.split('\n').filter(line => line.trim() !== '');
+    const lines = data.split('\n').filter((line) => line.trim() !== '');
 
     if (lines.length <= 1) {
       console.log('Number of students: 0');
@@ -19,7 +19,6 @@ function countStudents(path) {
 
     for (const line of students) {
       const parts = line.split(',');
-      if (parts.length < 4) continue; // skip malformed lines
 
       const firstname = parts[0].trim();
       const field = parts[3].trim();
@@ -37,8 +36,10 @@ function countStudents(path) {
     console.log(`Number of students: ${total}`);
 
     for (const field in fieldCounts) {
-      const names = fieldNames[field].join(', ');
-      console.log(`Number of students in ${field}: ${fieldCounts[field]}. List: ${names}`);
+      if (Object.prototype.hasOwnProperty.call(fieldCounts, field)) {
+        const names = fieldNames[field].join(', ');
+        console.log(`Number of students in ${field}: ${fieldCounts[field]}. List: ${names}`);
+      }
     }
   } catch (err) {
     throw new Error('Cannot load the database');
