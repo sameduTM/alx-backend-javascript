@@ -1,49 +1,36 @@
-const fs = require('fs');
+const fs = require('node:fs');
 
-function countStudents(path) {
+function countStudents (path) {
   try {
-    const data = fs.readFileSync(path, 'utf8');
+    const chunk = fs.readFileSync(path, 'utf8');
+    const students = chunk.split('\n').slice(1).filter((value) => value.trim());
 
-    // Remove empty lines and split
-    const lines = data.split('\n').filter((line) => line.trim() !== '');
+    const NUMBER_OF_STUDENTS = students.length;
 
-    if (lines.length <= 1) {
-      console.log('Number of students: 0');
-      return;
-    }
-
-    const students = lines.slice(1); // skip header
+    console.log(`Number of students: ${NUMBER_OF_STUDENTS}`);
 
     const fieldCounts = {};
-    const fieldNames = {};
+    const studentCounts = {};
 
-    for (const line of students) {
-      const parts = line.split(',');
-
-      const firstname = parts[0].trim();
-      const field = parts[3].trim();
+    for (const student of students) {
+      const field = student.split(',')[3].trim();
+      const firstname = student.split(',')[0].trim();
 
       if (!fieldCounts[field]) {
         fieldCounts[field] = 0;
-        fieldNames[field] = [];
+        studentCounts[field] = [];
       }
-
       fieldCounts[field] += 1;
-      fieldNames[field].push(firstname);
+      studentCounts[field].push(firstname);
     }
-
-    const total = Object.values(fieldCounts).reduce((sum, count) => sum + count, 0);
-    console.log(`Number of students: ${total}`);
-
-    for (const field in fieldCounts) {
-      if (Object.prototype.hasOwnProperty.call(fieldCounts, field)) {
-        const names = fieldNames[field].join(', ');
-        console.log(`Number of students in ${field}: ${fieldCounts[field]}. List: ${names}`);
+    for (const key in fieldCounts) {
+      if (key) {
+        console.log(`Number of students in ${key}: ${fieldCounts[key]}. List: ${studentCounts[key]}`);
       }
     }
   } catch (err) {
-    throw new Error('Cannot load the database');
+    console.log('Cannot load the database');
   }
 }
 
-module.exports = countStudents;
+countStudents('database.csv');
