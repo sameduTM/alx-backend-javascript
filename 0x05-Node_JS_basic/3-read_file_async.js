@@ -1,6 +1,6 @@
 const fs = require('fs').promises;
 
-async function countStudents(path) {
+async function countStudents (path) {
   try {
     const chunk = await fs.readFile(path, { encoding: 'utf8' });
 
