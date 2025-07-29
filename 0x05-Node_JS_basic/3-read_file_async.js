@@ -1,10 +1,11 @@
-import * as fs from 'node:fs/promises';
+const fs = require('fs').promises;
 
 async function countStudents(path) {
   try {
     const chunk = await fs.readFile(path, { encoding: 'utf8' });
 
-    const students = chunk.split('\n').slice(1);
+    const lines = chunk.split('\n').filter((line) => line.trim() !== '');
+    const students = lines.slice(1);
     console.log(`Number of students: ${students.length}`);
 
     const fieldCounts = {};
