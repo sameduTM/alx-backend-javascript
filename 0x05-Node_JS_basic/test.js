@@ -6,14 +6,14 @@ const app = require('./4-http');
 chai.use(chaiHttp);
 chai.should();
 
-describe('small HTTP server', () => {
-  it('returns the right content for /', () => new Promise((done) => {
+describe('Small HTTP server', () => {
+  it('Returns the right content for /test', (done) => {
     chai.request(app)
-      .get('/')
+      .get('/test')
       .end((error, response) => {
         chai.expect(response.text).to.equal('Hello Holberton School!');
         chai.expect(response.statusCode).to.equal(200);
         done();
       });
-  }));
+  });
 });

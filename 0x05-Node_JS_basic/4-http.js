@@ -4,9 +4,11 @@ const port = 1245;
 
 const app = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Hello ALX!');
+  res.end('Hello Holberton School!');
 });
 
-app.listen(port);
+app.listen(port, () => {
+  console.log('...')
+});
 
 module.exports = app;
