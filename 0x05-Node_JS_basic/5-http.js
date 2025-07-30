@@ -3,6 +3,7 @@ const fs = require('fs');
 const { URL } = require('url');
 
 const port = 1245;
+const path = process.argv[2];
 
 const app = http.createServer((req, res) => {
   const { method, url } = req;
@@ -13,13 +14,13 @@ const app = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello ALX!');
   } else if (method === 'GET' && pathname === '/students') {
-    fs.readFile('database.csv', 'utf8', (err, data) => {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.write('This is the list of our students\n');
+    fs.readFile(path, 'utf8', (err, data) => {
       if (err) {
-        res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end('Cannot load the database');
         return;
       }
-
       const lines = data.trim().split('\n');
       const students = lines.slice(1).filter((line) => line.trim());
       const NUMBER_OF_STUDENTS = students.length;
@@ -40,15 +41,15 @@ const app = http.createServer((req, res) => {
         studentCounts[field].push(firstname);
       }
 
-      let result = 'This is the list of our students\n';
-      result += `Number of students: ${NUMBER_OF_STUDENTS}\n`;
+      let result = '';
+      result = `Number of students: ${NUMBER_OF_STUDENTS}\n`;
 
       for (const key of Object.keys(fieldCounts)) {
         result += `Number of students in ${key}: ${fieldCounts[key]}. List: ${studentCounts[key].join(', ')}\n`;
       }
 
-      res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end(result.trim()); // .trim() to avoid extra newline at the end
+      // res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.end(result.trim());
     });
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
