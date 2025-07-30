@@ -1,24 +1,21 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
-process.argv[2] = './blabla.csv';
 const app = require('./5-http');
 
 chai.use(chaiHttp);
 chai.should();
 
-describe('More complex HTTP server using node', () => {
-  describe('When the database is not available', () => {
-    before(() => {
-      process.argv[2] = './blabla.csv';
-    })
-    it('Returns the right error message', (done) => {
+describe('more complex HTTP server using node', () => {
+  describe('/endpoint', () => {
+    it('returns the right content', () => new Promise((done) => {
       chai.request(app)
-        .get('/students')
+        .get('/')
         .end((error, response) => {
-          chai.expect(response.text).to.equal(`This is the list of our students\nCannot load the database`);
+          chai.expect(response.text).to.equal('Hello ALX!');
+          chai.expect(response.statusCode).to.equal(200);
           done();
         });
-    });
+    }));
   });
 });

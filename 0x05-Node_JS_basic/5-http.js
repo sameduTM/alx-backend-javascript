@@ -11,6 +11,7 @@ const app = http.createServer((req, res) => {
   const { pathname } = parsedUrl;
 
   if (method === 'GET' && pathname === '/') {
+    res.statusCode = 200;
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('Hello ALX!');
   } else if (method === 'GET' && pathname === '/students') {
@@ -47,8 +48,6 @@ const app = http.createServer((req, res) => {
       for (const key of Object.keys(fieldCounts)) {
         result += `Number of students in ${key}: ${fieldCounts[key]}. List: ${studentCounts[key].join(', ')}\n`;
       }
-
-      // res.writeHead(200, { 'Content-Type': 'text/plain' });
       res.end(result.trim());
     });
   } else {
