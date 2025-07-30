@@ -23,7 +23,6 @@ async function countStudents (path) {
       fieldCounts[field] += 1;
       studentCounts[field].push(firstname);
     }
-    console.log(studentCounts.CS);
     for (const key of Object.keys(fieldCounts)) {
       if (key) {
         console.log(`Number of students in ${key}: ${fieldCounts[key]}. List: ${studentCounts[key].join(', ')}`);
