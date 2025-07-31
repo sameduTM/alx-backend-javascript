@@ -13,7 +13,7 @@ const app = http.createServer((req, res) => {
   if (method === 'GET' && pathname === '/') {
     res.statusCode = 200;
     res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello ALX!');
+    res.end('Hello Holberton School!');
   } else if (method === 'GET' && pathname === '/students') {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.write('This is the list of our students\n');
