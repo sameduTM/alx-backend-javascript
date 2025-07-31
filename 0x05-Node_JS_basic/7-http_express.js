@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 });
 app.get('/students', (req, res) => {
   res.setHeader('Content-Type', 'text/plain');
-  res.send(getOutput(path));
+  res.send(`This is the list of our students\n${getOutput(path)}`);
 });
 
 app.listen(port, () => {
