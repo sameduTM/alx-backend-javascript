@@ -32,7 +32,7 @@ function getOutput(path) {
     }
     return listStudents.trim();
   } catch (err) {
-    throw new Error('Cannot load the database');
+    return 'Cannot load the database';
   }
 }
 
