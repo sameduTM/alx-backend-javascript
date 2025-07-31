@@ -47,3 +47,5 @@ app.get('/students', (req, res) => {
 app.listen(port, () => {
   console.log('...');
 });
+
+module.exports = app;
