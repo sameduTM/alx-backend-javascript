@@ -9,7 +9,10 @@ if (process.stdin.isTTY) {
   process.stdin.on('readable', () => {
     const INPUT = process.stdin.read();
     process.stdout.write(`Your name is: ${INPUT}`);
-    process.stdout.write('This important software is now closing\n');
+    process.stdin.emit('end');
+  });
+  process.stdin.on('end', () => {
+    console.log('This important software is now closing');
     process.exit(0);
   });
 }
