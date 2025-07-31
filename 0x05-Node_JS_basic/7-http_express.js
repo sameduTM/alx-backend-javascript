@@ -37,7 +37,7 @@ function getOutput(path) {
 }
 
 app.get('/', (req, res) => {
-  res.send('Hello ALX!');
+  res.send('Hello Holberton School!');
 });
 app.get('/students', (req, res) => {
   res.setHeader('Content-Type', 'text/plain');

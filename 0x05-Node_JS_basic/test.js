@@ -1,23 +1,19 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
-process.argv[2] = './blabla.csv';
 const app = require('./7-http_express');
 
 chai.use(chaiHttp);
 chai.should();
 
 describe('More complex HTTP server using Express', () => {
-  describe('When the database is not available', () => {
-    before(() => {
-      process.argv[2] = './blabla.csv';
-    })
-    it('Returns the right error message', (done) => {
+  describe('/ endpoint', () => {
+    it('Returns the right content', (done) => {
       chai.request(app)
-        .get('/students')
+        .get('/')
         .end((error, response) => {
-          chai.expect(response.text).to.equal(`This is the list of our students
-Cannot load the database`);
+          chai.expect(response.text).to.equal('Hello ALX!');
+          chai.expect(response.statusCode).to.equal(200);
           done();
         });
     });
