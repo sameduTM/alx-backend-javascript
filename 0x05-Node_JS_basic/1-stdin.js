@@ -1,20 +1,15 @@
-process.stdout.write('Welcome to Holberton School, what is your name?\n');
-
-function takeInput () {
-  process.stdin.on('readable', () => {
-    const chunk = process.stdin.read();
-    if (chunk !== null) {
-      const name = chunk.toString().trim();
-      process.stdout.write(`Your name is: ${name}\n`);
-    }
-  });
-}
+console.log('Welcome to Holberton School, what is your name?');
 
 if (process.stdin.isTTY) {
-  takeInput();
+  process.stdin.on('readable', () => {
+    const INPUT = process.stdin.read();
+    process.stdout.write(`Your name is: ${INPUT}`);
+  });
 } else {
-  takeInput();
-  process.stdin.on('end', () => {
-    console.log('This important software is now closing');
+  process.stdin.on('readable', () => {
+    const INPUT = process.stdin.read();
+    process.stdout.write(`Your name is: ${INPUT}`);
+    process.stdout.write('This important software is now closing\n');
+    process.exit(0);
   });
 }
