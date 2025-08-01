@@ -1,9 +1,8 @@
 import readDatabase from '../utils';
 
-const filepath = './database.csv';
-
 class StudentController {
   static getAllStudents(request, response) {
+    const filepath = process.argv[2];
     const header = 'This is the list of our students';
     readDatabase(filepath).then((data) => {
       let outputString = `${header}\n`;
@@ -19,6 +18,7 @@ class StudentController {
   }
 
   static getAllStudentsByMajor(request, response) {
+    const filepath = './database.csv';
     const { path } = request;
     const major = path.split('/')[2];
     const allMajors = ['CS', 'SWE'];
