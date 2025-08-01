@@ -1,6 +1,6 @@
 import readDatabase from '../utils';
 
-const filepath = 'database.csv';
+const filepath = process.argv[2];
 
 class StudentController {
   static getAllStudents(request, response) {
@@ -27,9 +27,7 @@ class StudentController {
     return readDatabase(filepath).then((data) => {
       const outputString = `List: ${data[major].join(', ')}`;
       response.status(200).send(outputString);
-    }).catch(() => {
-      response.status(500).send('Cannot load the database');
-    });
+    }).catch(() => response.status(500).send('Cannot load the database'));
   }
 }
 
