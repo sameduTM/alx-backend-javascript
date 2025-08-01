@@ -18,7 +18,7 @@ class StudentController {
   }
 
   static getAllStudentsByMajor(request, response) {
-    const filepath = './database.csv';
+    const filepath = process.argv[2];
     const { path } = request;
     const major = path.split('/')[2];
     const allMajors = ['CS', 'SWE'];
