@@ -4,9 +4,8 @@ const filepath = 'database.csv';
 
 class StudentController {
   static getAllStudents(request, response) {
-    const header = 'This is the list of our students\n';
     readDatabase(filepath).then((data) => {
-      let outputString = header;
+      let outputString = 'This is the list of our students\n';
       for (const key of Object.keys(data)) {
         if (key) {
           outputString += `Number of students in ${key}: ${data[key].length}. List: ${data[key].join(', ')}\n`;
@@ -14,7 +13,7 @@ class StudentController {
       }
       response.status(200).send(outputString.trim());
     }).catch(() => {
-      response.status(500).send(`${header}Cannot load the database`);
+      response.status(500).send('Cannot load the database');
     });
   }
 

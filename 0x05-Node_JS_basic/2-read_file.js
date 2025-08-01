@@ -1,6 +1,6 @@
 const fs = require('node:fs');
 
-function countStudents (path) {
+function countStudents(path) {
   try {
     const chunk = fs.readFileSync(path, 'utf8');
     const students = chunk.split('\n').slice(1).filter((value) => value.trim());
