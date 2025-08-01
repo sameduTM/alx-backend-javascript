@@ -1,10 +1,8 @@
-import app from './full_server/server.js';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import app from './full_server/server.js';
 
-process.argv[2] = './blabla.csv';
-
-
+process.argv[2] = './database.csv';
 
 chai.use(chaiHttp);
 chai.should();
@@ -16,7 +14,7 @@ describe('Full HTTP server using Express', () => {
     })
     it('Returns the right error message', (done) => {
       chai.request(app)
-        .get('/students/SWE')
+        .get('/students')
         .end((error, response) => {
           chai.expect(response.text).to.equal(`Cannot load the database`);
           done();

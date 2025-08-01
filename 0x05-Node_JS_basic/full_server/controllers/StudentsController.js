@@ -1,11 +1,12 @@
 import readDatabase from '../utils';
 
-const filepath = process.argv[2];
+const filepath = './database.csv';
 
 class StudentController {
   static getAllStudents(request, response) {
+    const header = 'This is the list of our students';
     readDatabase(filepath).then((data) => {
-      let outputString = 'This is the list of our students\n';
+      let outputString = `${header}\n`;
       for (const key of Object.keys(data)) {
         if (key) {
           outputString += `Number of students in ${key}: ${data[key].length}. List: ${data[key].join(', ')}\n`;
