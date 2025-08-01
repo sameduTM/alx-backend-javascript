@@ -25,10 +25,12 @@ class StudentController {
     if (!allMajors.includes(major)) {
       return response.status(500).send('Major parameter must be CS or SWE');
     }
-    readDatabase(filepath).then((data) => {
+    return readDatabase(filepath).then((data) => {
       const outputString = `List: ${data[major].join(', ')}`;
       response.status(200).send(outputString);
-    }).catch(() => response.status(500).send('Cannot load the database'));
+    }).catch(() => {
+      response.status(500).send('Cannot load the database');
+    });
   }
 }
 
