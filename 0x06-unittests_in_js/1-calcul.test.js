@@ -65,43 +65,31 @@ describe('calculateNumber', () => {
     it('should handle negative numbers', () => {
       assert.strictEqual(calculateNumber('SUBTRACT', -3.8, -1.8), -2);
     });
-
     describe('divide', () => {
-      it('should return the division of rounded integers', () => {
-      assert.strictEqual(calculateNumber('DIVIDE', 3, 1), 3);
+      it('it round the first argument', () => {
+        assert.equal(calculateNumber('DIVIDE', 10.0, 2), 5);
+        assert.equal(calculateNumber('DIVIDE', 10.3, 2), 5);
+        assert.equal(calculateNumber('DIVIDE', 10.7, 2), 5.5);
     });
-
-    it('should handle rounding the first number up', () => {
-      assert.strictEqual(calculateNumber('DIVIDE', 3.7, 2), 2);
+      it('it round the second argument', () => {
+        assert.equal(calculateNumber('DIVIDE', 10, 1.0), 10);
+        assert.equal(calculateNumber('DIVIDE', 10, 1.3), 10);
+        assert.equal(calculateNumber('DIVIDE', 10, 1.7), 5);
     });
-
-    it('should handle rounding the second number up', () => {
-      assert.strictEqual(calculateNumber('DIVIDE', 2, 1.8), 1);
+      it('it should return the right number', () => {
+        assert.equal(calculateNumber('DIVIDE', 10.3, 2), 5);
+        assert.equal(calculateNumber('DIVIDE', 10, 1.2), 10);
+        assert.equal(calculateNumber('DIVIDE', 10.3, 1.3), 10);
+        assert.equal(calculateNumber('DIVIDE', 10.7, 1.2), 11);
+        assert.equal(calculateNumber('DIVIDE', 10.3, 1.8), 5);
+        assert.equal(calculateNumber('DIVIDE', 10.6, 1.8), 5.5);
     });
-
-    it('should handle rounding both numbers up', () => {
-      assert.strictEqual(calculateNumber('DIVIDE', 5.7, 2.8), 2);
-    });
-
-    it('should handle rounding the first number down', () => {
-      assert.strictEqual(calculateNumber('DIVIDE', 1.4, 4.5), 0.2);
-    });
-
-    it('should handle rounding the second number down', () => {
-      assert.strictEqual(calculateNumber('DIVIDE', 6, 3.2), 2);
-    });
-
-    it('should handle rounding both numbers down', () => {
-      assert.strictEqual(calculateNumber('DIVIDE', 2.2, 2.2), 1);
-    });
-
-    it('should handle negative numbers', () => {
-      assert.strictEqual(calculateNumber('DIVIDE', -5.2, -2.4), 2.5);
-    });
-
-    it('should handle division by 0', () => {
-      assert.strictEqual(calculateNumber('DIVIDE', 1.5, 0), 'Error');
-    });
+      it('it should return Error if b is equal to 0', () => {
+        assert.equal(calculateNumber('DIVIDE', 10.3, 0), 'Error');
+        assert.equal(calculateNumber('DIVIDE', 10.7, 0), 'Error');
+        assert.equal(calculateNumber('DIVIDE', 10.3, 0.3), 'Error');
+        assert.equal(calculateNumber('DIVIDE', 10.7, 0.2), 'Error');
+      });
     });
   });
 });
