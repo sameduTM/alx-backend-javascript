@@ -1,5 +1,6 @@
 const chai = require('chai');
-const expect = chai.expect;
+
+const { expect } = chai;
 
 const calculateNumber = require('./2-calcul_chai.js');
 
@@ -68,30 +69,29 @@ describe('calculateNumber', () => {
       expect(calculateNumber('SUBTRACT', -3.8, -1.8)).to.equal(-2);
     });
     describe('divide', () => {
-      it('it round the first argument', () => {
+      it('round the first argument', () => {
         expect(calculateNumber('DIVIDE', 10.0, 2)).to.equal(5);
         expect(calculateNumber('DIVIDE', 10.3, 2)).to.equal(5);
         expect(calculateNumber('DIVIDE', 10.7, 2)).to.equal(5.5);
-    });
-      it('it round the second argument', () => {
+      });
+      it('round the second argument', () => {
         expect(calculateNumber('DIVIDE', 10, 1.0)).to.equal(10);
         expect(calculateNumber('DIVIDE', 10, 1.3)).to.equal(10);
         expect(calculateNumber('DIVIDE', 10, 1.7)).to.equal(5);
-    });
-      it('it should return the right number', () => {
+      });
+      it('should return the right number', () => {
         expect(calculateNumber('DIVIDE', 10.3, 2)).to.equal(5);
         expect(calculateNumber('DIVIDE', 10, 1.2)).to.equal(10);
         expect(calculateNumber('DIVIDE', 10.3, 1.3)).to.equal(10);
         expect(calculateNumber('DIVIDE', 10.7, 1.2)).to.equal(11);
         expect(calculateNumber('DIVIDE', 10.3, 1.8)).to.equal(5);
         expect(calculateNumber('DIVIDE', 10.6, 1.8)).to.equal(5.5);
-    });
-      it('it should return Error if b is equal to 0', () => {
+      });
+      it('should return Error if b is equal to 0', () => {
         expect(calculateNumber('DIVIDE', 10.3, 0)).to.equal('Error');
         expect(calculateNumber('DIVIDE', 10.7, 0)).to.equal('Error');
         expect(calculateNumber('DIVIDE', 10.3, 0.3)).to.equal('Error');
         expect(calculateNumber('DIVIDE', 10.7, 0.2)).to.equal('Error');
-
       });
     });
   });
