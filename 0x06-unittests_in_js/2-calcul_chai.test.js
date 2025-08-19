@@ -4,31 +4,16 @@ const expect = chai.expect;
 const calculateNumber = require('./2-calcul.js');
 
 describe('test the function calculateNumber', function () {
-  describe('test the SUM of the variables', function () {
     it('it should return the sum of a and b', function () {
         expect(calculateNumber('SUM', 1, 2)).to.equal(3);
-      });
-      it('the first number is rounded up', function () {
         expect(calculateNumber('SUM', 1.7, 2)).to.equal(4);
-      });
-      it('the second number is rounded up', function () {
         expect(calculateNumber('SUM', 1, 2.7)).to.equal(4);
-      });
-      it('both numbers are rounded up', function () {
         expect(calculateNumber('SUM', 1.7, 2.7)).to.equal(5);
-      });
-      it('the first number is rounded down', function () {
         expect(calculateNumber('SUM', 1.2, 2)).to.equal(3);
-      });
-      it('the second number is rounded down', function () {
         expect(calculateNumber('SUM', 1, 2.2)).to.equal(3);
-      });
-      it('both numbers rounded down', function () {
         expect(calculateNumber('SUM', 1.2, 2.2)).to.equal(3);
-      });
-      it('return type should be number', function () {
         expect(calculateNumber('SUM', 1, 2)).to.be.a('number');
-      });
+
   });
   describe('test the SUBTRACT operation', function () {
     it('it should return the sum of a and b', function () {
