@@ -1,14 +1,16 @@
 module.exports = function calculateNumber(type, a, b) {
+  const roundeda = Math.round(a);
+  const roundedb = Math.round(b);
   switch (type) {
     case 'SUM':
-      return Math.round(a) + Math.round(b);
+      return roundeda + roundedb;
     case 'SUBTRACT':
-      return Math.round(a) - Math.round(b);
+      return roundeda - roundedb;
     case 'DIVIDE':
-      if (Math.round(b) === 0) {
+      if (roundedb === 0) {
         return 'Error';
       }
-      return Math.round(a) / Math.round(b);
+      return roundeda / roundedb;
     default:
       return NaN;
   }
