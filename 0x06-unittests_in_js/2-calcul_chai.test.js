@@ -1,8 +1,7 @@
 /* eslint-disable */
 const chai = require('chai');
 const expect = chai.expect;
-const assert = require('assert');
-const calculateNumber = require('./1-calcul');
+const calculateNumber = require('./2-calcul');
 
 describe('test the function calculateNumber', function () {
   describe('test the SUM of the variables', function () {
