@@ -7,7 +7,7 @@
   "type": "commonjs",
   "main": "0-calcul.js",
   "scripts": {
-    "test": "mocha ."
+    "test": "mocha"
   },
   "devDependencies": {
     "mocha": "^11.7.1"
