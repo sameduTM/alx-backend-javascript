@@ -3,7 +3,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const calculateNumber = require('./2-calcul_chai');
 
-describe('test the function calculateNumber', function () {
+describe('chai - test the function calculateNumber:', function () {
   describe('SUM', function () {
     it('should return the sum of a and b', function () {
       expect(calculateNumber('SUM', 1, 2)).to.equal(3);
