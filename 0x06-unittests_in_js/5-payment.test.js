@@ -1,5 +1,5 @@
 /* eslint-disable */
-const sendPaymentRequestToApi = require('./4-payment');
+const sendPaymentRequestToApi = require('./5-payment');
 const sinon = require('sinon');
 const { expect, assert } = require('chai');
 
